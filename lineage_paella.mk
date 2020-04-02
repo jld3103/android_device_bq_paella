@@ -6,14 +6,17 @@ TARGET_BOOTANIMATION_HALF_RES := true
 # Inherit some common Lineage stuff
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-# Inherit device configuration
-$(call inherit-product, device/bq/paella/full_paella.mk)
-
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_l.mk)
 
-PRODUCT_RELEASE_NAME := Aquaris X5
+# This can prevent profman error while building boot image preferences.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
 PRODUCT_NAME := lineage_paella
+PRODUCT_DEVICE := paella
+PRODUCT_BRAND := bq
+PRODUCT_MODEL := Aquaris X5
+PRODUCT_MANUFACTURER := bq
 
 # Set product device & name
 PRODUCT_BUILD_PROP_OVERRIDES += \

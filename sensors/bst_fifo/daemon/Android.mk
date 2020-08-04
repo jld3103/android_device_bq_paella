@@ -59,7 +59,6 @@ include $(addprefix $(LOCAL_PATH)/,$(addsuffix /Android.mk, \
 
 -include $(LOCAL_PATH)/src/hw/Android.mk
 
-LOCAL_MODULE_TAGS := eng
 ifneq (,$(sensord_suffix))
 LOCAL_MODULE = sensord.$(sensord_suffix)
 else

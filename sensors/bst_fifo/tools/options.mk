@@ -8,33 +8,8 @@ LOCAL_CFLAGS += -D__SENSORS_DEVICE_API_VERSION_1_0__=100
 LOCAL_CFLAGS += -D__SENSORS_DEVICE_API_VERSION_1_1__=110
 LOCAL_CFLAGS += -D__SENSORS_DEVICE_API_VERSION_1_3__=130
 
-$(warning ----android_version is $(android_version))
-
-ifeq (2.3, $(android_version))
-LOCAL_CFLAGS += -D__HAL_VER__=__SENSORS_DEVICE_API_VERSION_0_1__
-uncalibrated_virtual_sensor_support = false
-significant_motion_sensor_support = false
-else ifeq (4.0, $(android_version))
-LOCAL_CFLAGS += -D__HAL_VER__=__SENSORS_DEVICE_API_VERSION_0_1__
-uncalibrated_virtual_sensor_support = false
-significant_motion_sensor_support = false
-else ifeq (4.1, $(android_version))
-LOCAL_CFLAGS += -D__HAL_VER__=__SENSORS_DEVICE_API_VERSION_0_1__
-uncalibrated_virtual_sensor_support = false
-significant_motion_sensor_support = false
-else ifeq (4.2, $(android_version))
-LOCAL_CFLAGS += -D__HAL_VER__=__SENSORS_DEVICE_API_VERSION_0_1__
-uncalibrated_virtual_sensor_support = false
-significant_motion_sensor_support = false
-else ifeq (4.3, $(android_version))
-LOCAL_CFLAGS += -D__HAL_VER__=__SENSORS_DEVICE_API_VERSION_1_0__
-else ifeq (4.4, $(android_version))
-LOCAL_CFLAGS += -D__HAL_VER__=__SENSORS_DEVICE_API_VERSION_1_1__
-else ifeq (5.0, $(android_version))
 LOCAL_CFLAGS += -D__HAL_VER__=__SENSORS_DEVICE_API_VERSION_1_3__
-else
-	$(warning ----android_version is not configured)
-endif
+
 # bmi160
 bma_candidates := bmi160
 
@@ -86,7 +61,6 @@ ifeq (true, $(bmp_support))
 LOCAL_CFLAGS += -D__PRESSURE_SENSOR_SUPPORT__
 endif
 
-$(warning compiling daemon for: $(bma) $(bmm) $(bmg) $(bmc) $(bmi))
 # if gyro is not defined, enable simu gyro sensor
 # maybe I will use __GYRO_SUPPORT__ in future
 ifneq (true, $(gyrosupport))
